@@ -699,7 +699,7 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#define E0_AUTO_FAN_PIN -1
+#define E0_AUTO_FAN_PIN 4  // Hotend cooling fan (servo connector pin 4)
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
@@ -1452,7 +1452,10 @@
 //#define MICROSTEP32 HIGH,LOW,HIGH
 
 // Microstep settings (Requires a board with pins named X_MS1, X_MS2, etc.)
-#define MICROSTEP_MODES { 16, 16, 16, 16, 16, 16 } // [1,2,4,8,16]
+// DRV8825 supports up to 1/32 microstepping. Common settings:
+// 1/16: { 16, 16, 16, 16, 16, 16 } - Steps/mm: { 80, 80, 400, 500 }
+// 1/32: { 32, 32, 32, 32, 32, 32 } - Steps/mm: { 160, 160, 3200, 500 }
+#define MICROSTEP_MODES { 32, 32, 32, 32, 32, 32 } // [1,2,4,8,16,32] - DRV8825 1/32 microstepping
 
 /**
  * @section stepper motor current
